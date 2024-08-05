@@ -1,5 +1,10 @@
-# Mantine Next Template
+# ClubSwap
 
-Get started with the template by clicking `Use this template` button on the top of the page.
+Website for selling and buying used clubs. Made with NextJS (only for demo purposes currently)
 
-[Documentation](https://mantine.dev/guides/next/)
+## Scripts
+
+### Build and Dev Scripts
+
+- `dev` – start dev server
+- `build` – bundle application for production
