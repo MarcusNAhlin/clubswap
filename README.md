@@ -1,6 +1,6 @@
 # ClubSwap
 
-Website for selling and buying used clubs. Made with NextJS (only for demo purposes currently)
+Website for selling and buying used golf clubs. Made with NextJS (only for demo purposes currently)
 
 ## Scripts
 
