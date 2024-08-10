@@ -16,14 +16,15 @@ model User {
 }
 
 model Post {
-  id              Int     @id @default(autoincrement())
+  id              Int  @id @default(autoincrement())
   user            User @relation(fields: [user_name], references: [name])
   user_name       String
   pickup_location String
   title           String
   description     String?
   price_sek       Int
-  category        String?
+  category        Category @relation(fields: [category_id], references: [id])
+  category_id     Int
   brand           String?
   shaft           String?
   created_at      DateTime @default(now())
@@ -31,7 +32,8 @@ model Post {
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String
-  parent_category_id Int?
+  id                  Int @id @default(autoincrement())
+  name                String
+  parent_category_id  Int?
+  posts               Post[]
 }
