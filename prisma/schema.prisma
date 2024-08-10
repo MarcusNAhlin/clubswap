@@ -10,6 +10,28 @@ datasource db {
 model User {
   id       Int     @id @default(autoincrement())
   email    String  @unique
-  name     String? @unique
+  name     String  @unique
   password String?
+  posts    Post[]
+}
+
+model Post {
+  id              Int     @id @default(autoincrement())
+  user            User @relation(fields: [user_name], references: [name])
+  user_name       String
+  pickup_location String
+  title           String
+  description     String?
+  price_sek       Int
+  category        String?
+  brand           String?
+  shaft           String?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String
+  parent_category_id Int?
 }
