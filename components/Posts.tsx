@@ -2,7 +2,7 @@
 
 import { PrismaClient, Post as PostType } from '@prisma/client';
 import { Flex } from '@mantine/core';
-import Post from './Post';
+import Post from 'components/Post';
 
 const prisma = new PrismaClient()
 
