@@ -6,7 +6,7 @@ export default function ClubsPage() {
 
     return (
     <>
-        <Header />
+        <Header text="ClubSwap" />
 
         {/* <Filter /> */}
         <Posts />
