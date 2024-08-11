@@ -2,6 +2,7 @@
 
 import { Post as PostType } from '@prisma/client';
 import { Card, Image, Text, Badge, Button, Group, Flex, Container } from '@mantine/core';
+import { IconMapPin } from '@tabler/icons-react';
 
 interface PostProps {
     post: PostType;
@@ -29,7 +30,7 @@ export default function Post({ post }: PostProps) {
                 wrap='nowrap'
             >
                 <Text fw={300}>{ post.user_name }</Text>
-                <Text fw={300}>{ post.pickup_location }</Text>
+                <Text fw={300}><IconMapPin size="1.1rem" />{ post.pickup_location }</Text>
             </Flex>
             <div>
                 <Badge color="grey" m={5}>Driver</Badge>
