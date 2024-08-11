@@ -1,6 +1,7 @@
 "use client";
 
 import { PrismaClient, Post as PostType } from '@prisma/client';
+import { Flex } from '@mantine/core';
 import Post from './Post';
 
 const prisma = new PrismaClient()
@@ -10,9 +11,11 @@ export default async function Posts() {
 
     return (
     <>
-        {posts.map(post => (
-            <Post key={post.id} post={post} />
-        ))}
+        <Flex direction={"row"} wrap={"wrap"} justify={"start"} gap="md" p="lg" >
+            {posts.map(post => (
+                <Post key={post.id} post={post} />
+            ))}
+        </Flex>
     </>
     );
-  }
+}
