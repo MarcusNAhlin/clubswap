@@ -6,7 +6,7 @@ import { Button, Flex, Text } from "@mantine/core";
 import { useState } from "react";
 import { IconBrandGoogle } from "@tabler/icons-react";
 
-export default function GoogleSignInButton() {
+export default function GoogleSignInOutButton() {
     const { data: session } = useSession();
 
     const [loading, setLoading] = useState(false);
