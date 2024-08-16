@@ -2,8 +2,13 @@
 
 import { useForm } from '@mantine/form';
 import { Input, TextInput, PasswordInput, Flex, Group, Button } from '@mantine/core';
+import { signIn, useSession } from "next-auth/react";
+import React from 'react';
+import { json } from 'stream/consumers';
 
-export default function RegisterForm() {
+export default function LoginForm() {
+
+  const { data: session } = useSession();
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -17,10 +22,42 @@ export default function RegisterForm() {
         },
       });
 
+      async function handleSubmit(event: React.FormEvent, values: { email: string, password: string }) {
+        event.preventDefault();
+
+        try {
+          let res = await signIn("credentials", {
+            email: values.email,
+            password: values.password,
+            callbackUrl: `${process.env.NEXT_PUBLIC_NEXTAUTH_URL}`,
+            redirect: false,
+          });
+
+          if (res?.ok) {
+            // toast success
+            console.log("success");
+            return;
+          } else {
+            // Toast failed
+            // setError("Failed! Check your input and try again.");
+            console.log("Failed");
+            console.log(res);
+          }
+        } catch (error) {
+          console.error("An error occurred during sign-in:", error);
+          // Optionally, display an error message to the user
+          // setError("An unexpected error occurred. Please try again later.");
+        }
+      }
+
     return (
     <>
-    <Flex justify={"center"}>
-        <form onSubmit={form.onSubmit((values) => console.log(values))} style={{
+    {
+        session ? <><p>You are logged in!</p>
+        <p>{JSON.stringify(session)}</p></> : <p>You are not logged in!</p>
+    }
+    {/* <Flex justify={"center"}>
+        <form onSubmit={(event) => handleSubmit(event, form.getValues())} style={{
             width: "400px"
         }}>
             <TextInput
@@ -39,8 +76,12 @@ export default function RegisterForm() {
                 <Button type="submit">Submit</Button>
             </Group>
         </form>
-    </Flex>
+    </Flex> */}
+    <Button
+      onClick={() => signIn("google")}
+    >
+      Sign in with google
+    </Button>
     </>
     );
   }
-  
