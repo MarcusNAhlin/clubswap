@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
 import { Button, Flex, Text } from "@mantine/core";
 import { useState } from "react";
+import { IconBrandGoogle } from "@tabler/icons-react";
 
 export default function AccountHeader() {
     const { data: session } = useSession();
@@ -33,6 +34,7 @@ export default function AccountHeader() {
                         <Button
                         color="red"
                             onClick={() => handleSignOut()}
+                            leftSection={<IconBrandGoogle />}
                             w={"12rem"}
                             >
                             Sign out
@@ -49,6 +51,7 @@ export default function AccountHeader() {
                             color="green"
                             onClick={() => handleSignIn("google")}
                             w={"12rem"}
+                            leftSection={<IconBrandGoogle />}
                             >
                             Sign in with Google
                         </Button>
