@@ -2,22 +2,31 @@
 
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
-import { Button, Flex, Text } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { useState } from "react";
 import { IconBrandGoogle } from "@tabler/icons-react";
+import { PrismaClient } from "@prisma/client";
 
 export default function GoogleSignInOutButton() {
     const { data: session } = useSession();
 
     const [loading, setLoading] = useState(false);
 
-    function handleSignOut() {
+    const prisma = new PrismaClient();
+
+    async function handleSignOut() {
         setLoading(true);
+
+        // await fetch(`http://localhost:3000/api/user/create`, {
+        //     method: "POST",
+        // });
+
         signOut();
     }
 
-    function handleSignIn(provider: string) {
+    async function handleSignIn(provider: string) {
         setLoading(true);
+
         signIn(provider);
     }
 
@@ -59,3 +68,4 @@ export default function GoogleSignInOutButton() {
         </>
     );
 }
+
