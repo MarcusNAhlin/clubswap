@@ -3,6 +3,7 @@ import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../theme";
 import SessionWrapper from "components/SessionWrapper";
+import AccountHeader from "components/AccountHeader";
 
 export const metadata = {
   title: "ClubSwap",
