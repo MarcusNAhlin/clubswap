@@ -5,14 +5,11 @@ import { signIn, signOut } from "next-auth/react";
 import { Button } from "@mantine/core";
 import { useState } from "react";
 import { IconBrandGoogle } from "@tabler/icons-react";
-import { PrismaClient } from "@prisma/client";
 
 export default function GoogleSignInOutButton() {
     const { data: session } = useSession();
 
     const [loading, setLoading] = useState(false);
-
-    const prisma = new PrismaClient();
 
     async function handleSignOut() {
         setLoading(true);
