@@ -17,10 +17,6 @@ export default function GoogleSignInOutButton() {
     async function handleSignOut() {
         setLoading(true);
 
-        // await fetch(`http://localhost:3000/api/user/create`, {
-        //     method: "POST",
-        // });
-
         signOut();
     }
 
