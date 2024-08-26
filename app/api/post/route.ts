@@ -47,9 +47,6 @@ async function createPostHandler(req: NextRequest, res: NextResponse) {
         return NextResponse.json({ message: "Error finding user" }, { status: 401 });
     }
 
-    console.log(data);
-    console.log(user);
-
     try {
         var category = await prisma.category.findFirst({
             where: {

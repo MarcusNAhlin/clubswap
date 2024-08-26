@@ -4,8 +4,8 @@ import AccountHeader from "components/AccountHeader";
 export default function HomePage() {
   return (
   <>
-            <AccountHeader />
-    <Header text="ClubSwap" />
+        <AccountHeader />
+        <Header text="ClubSwap" />
   </>
   );
 }

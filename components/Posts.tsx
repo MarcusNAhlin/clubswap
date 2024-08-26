@@ -1,5 +1,3 @@
-"use client";
-
 import { PrismaClient, Post as PostType } from '@prisma/client';
 import { Flex } from '@mantine/core';
 import Post from 'components/Post';
