@@ -16,13 +16,13 @@ export default async function AddPost() {
             session?.user ?
 
             <>
-                <Header text="Add post" />
+                <Header text="Add Post" />
 
                 <PostAddForm />
             </>
             :
             <>
-                <Header text="Add post" />
+                <Header text="Add Post" />
                 <Flex direction="column" align={"center"} gap={"lg"} justify={"center"} mt={"10vh"}>
                     <Alert variant="light" color="red" title="Not signed in" icon={<IconInfoCircle />} w={"500px"} maw={"90vw"}>
                         You need to sign in to post!

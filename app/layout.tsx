@@ -29,7 +29,9 @@ export default function RootLayout({ children }: { children: any }) {
             }}>
               <Navbar />
               <div style={{
-                overflow: "scroll"
+                overflow: "scroll",
+                width: "100%",
+                padding: "1rem 2rem"
               }}>
                 {children}
               </div>
