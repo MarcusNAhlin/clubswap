@@ -12,13 +12,13 @@ export default function RegisterForm() {
         },
 
         validate: {
-          name: (value) => (value.length < 2 ? 'Name must have at least 2 letters' : null),
-          email: (value) => (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value) ? null : 'Invalid email'),
-          password: (value) => (value.length < 6 ? 'Password must have at least 6 characters' : null),
-          confirmPassword: (value, values) =>
+            name: (value) => (value.length < 2 ? 'Name must have at least 2 letters' : null),
+            email: (value) => (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value) ? null : 'Invalid email'),
+            password: (value) => (value.length < 6 ? 'Password must have at least 6 characters' : null),
+            confirmPassword: (value, values) =>
             value !== values.password ? 'Passwords did not match' : null,
         },
-      });
+    });
 
     return (
     <>
