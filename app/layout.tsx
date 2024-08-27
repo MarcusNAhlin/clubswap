@@ -1,9 +1,9 @@
 import "@mantine/core/styles.css";
 import React from "react";
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import { MantineProvider, ColorSchemeScript, Flex } from "@mantine/core";
 import { theme } from "../theme";
 import SessionWrapper from "components/SessionWrapper";
-import AccountHeader from "components/AccountHeader";
+import { Navbar } from "components/Navbar";
 
 export const metadata = {
   title: "ClubSwap",
@@ -23,7 +23,18 @@ export default function RootLayout({ children }: { children: any }) {
             />
         </head>
         <body>
-          <MantineProvider theme={theme}>{children}</MantineProvider>
+          <MantineProvider theme={theme}>
+            <Flex mih={"100vh"} mah={"100vh"} style={{
+              overflow: 'hidden'
+            }}>
+              <Navbar />
+              <div style={{
+                overflow: "scroll"
+              }}>
+                {children}
+              </div>
+            </Flex>
+          </MantineProvider>
         </body>
       </html>
     </SessionWrapper>
