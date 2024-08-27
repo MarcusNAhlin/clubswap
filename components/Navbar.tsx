@@ -6,6 +6,7 @@ import {
   IconHome,
   IconShoppingBag,
   IconSquareRoundedPlus,
+  IconUserCircle,
 } from '@tabler/icons-react';
 import { Logo } from 'components/Logo';
 import classes from 'components/Navbar.module.css';
@@ -15,6 +16,7 @@ const data = [
   { link: '/', label: 'Home', icon: IconHome },
   { link: '/clubs', label: 'Posts', icon: IconShoppingBag },
   { link: '/post/add', label: 'Add Post', icon: IconSquareRoundedPlus },
+  { link: '/account', label: 'My Account', icon: IconUserCircle },
   ];
 
 export function Navbar() {
@@ -42,7 +44,7 @@ export function Navbar() {
     }}>
       <div className={classes.navbarMain}>
         <Group className={classes.header} justify="space-between">
-          <Logo />
+          {/* <Logo /> */}
         </Group>
         {links}
       </div>
