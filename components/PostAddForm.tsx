@@ -3,11 +3,13 @@
 import { useForm } from "@mantine/form";
 import { TextInput, Textarea, NumberInput, MultiSelect, Select, Button, Flex, Group } from "@mantine/core";
 import { useState } from "react";
-import { redirect } from "next/dist/server/api-utils";
-// import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function PostAddForm() {
     const [submittedValues, setSubmittedValues] = useState<typeof form.values | null>(null);
+    const [loading, setLoading] = useState(false);
+
+    const router = useRouter();
 
     const shaftFlex = ['X-Stiff','Stiff', 'Regular', 'Lady', 'Senior', 'Junior', 'Other'];
     const brands = [
@@ -50,17 +52,22 @@ export default function PostAddForm() {
         });
 
     async function handleSubmit() {
+        setLoading(true);
         setSubmittedValues
         console.log(form.getValues());
 
-        await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/post`,
+        let postRes = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/post`,
         {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(form.getValues()),
-        })
+        });
+
+        if (postRes.status === 200) {
+            router.push('/account');
+        }
     }
 
     return (
@@ -120,13 +127,17 @@ export default function PostAddForm() {
                 {...form.getInputProps('pickup_location')}
                 />
 
-            <Button
+            {
+                loading ?
+                <Button loading loaderProps={{ type: 'dots' }} w={"12rem"}></Button>
+                :
+                <Button
                 type="submit"
                 color="blue"
                 variant="outline"
                 size="lg"
                 >Post</Button>
-
+            }
         </form>
         </>
     );

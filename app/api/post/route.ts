@@ -1,9 +1,12 @@
+"use server";
+
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "lib/authOptions";
 import { NextRequest, NextResponse } from "next/server";
 
 async function handlePOST(req: NextRequest, res: NextResponse) {
+
     return await createPostHandler(req, res);
 }
 
