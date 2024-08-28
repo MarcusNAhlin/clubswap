@@ -54,7 +54,6 @@ export default function PostAddForm() {
     async function handleSubmit() {
         setLoading(true);
         setSubmittedValues
-        console.log(form.getValues());
 
         let postRes = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/post`,
         {
