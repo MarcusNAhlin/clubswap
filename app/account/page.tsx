@@ -5,7 +5,7 @@ import GoogleSignInOutButton from "components/GoogleSignInOutButton";
 import { PrismaClient, Post as PostType } from '@prisma/client';
 import { getServerSession } from 'next-auth';
 import { authOptions } from 'lib/authOptions';
-import Post from 'components/Post';
+import MyPost from 'components/MyPost';
 
 
 const prisma = new PrismaClient();
@@ -47,14 +47,7 @@ export default async function AccountPage() {
                     <>
                         <Flex direction="column" align={"center"} gap={"lg"} justify={"center"} mt={"10vh"}>
                             <Text size="xl">Welcome, <strong>{session.user?.name}</strong>!</Text>
-                            {/* <Image
-                                h={100}
-                                w={100}
-                                radius={"md"}
-                                alt="User profile image"
-                                src={session.user?.image}
-                            ></Image> */}
-                            <GoogleSignInOutButton />
+                            {/* <GoogleSignInOutButton /> */}
                         </Flex>
                     </>
                     :
@@ -71,7 +64,7 @@ export default async function AccountPage() {
                 posts ? <>
                     <Flex direction={"row"} wrap={"wrap"} justify={"start"} gap="md" p="lg" >
                         {posts.map(post => (
-                            <Post key={post.id} post={post} />
+                            <MyPost key={post.id} post={post} />
                         ))}
                     </Flex>
                 </> : null

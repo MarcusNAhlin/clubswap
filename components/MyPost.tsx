@@ -1,14 +1,35 @@
-"use client";
+"use client"
 
 import { Post as PostType } from '@prisma/client';
 import { Card, Image, Text, Badge, Button, Group, Flex, Container } from '@mantine/core';
 import { IconMapPin } from '@tabler/icons-react';
+import { PrismaClient } from '@prisma/client';
+import { useRouter } from 'next/navigation'
 
 interface PostProps {
     post: PostType;
 }
 
+
 export default function Post({ post }: PostProps) {
+    const prisma = new PrismaClient();
+    const router = useRouter();
+
+    async function handlePostRemove(postId: number) {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_NEXTAUTH_URL}/api/post/delete`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ postId }),
+        });
+
+        if (res.ok) {
+            router.refresh();
+        }
+
+    }
+
     return (
         <Card shadow="sm" padding="lg" radius="md" withBorder w={350} h={550}>
           <Card.Section>
@@ -50,8 +71,8 @@ export default function Post({ post }: PostProps) {
             { post.price_sek } SEK
           </Text>
 
-          <Button color="blue" fullWidth mt="md" radius="md">
-            Contact seller
+          <Button color="red" fullWidth mt="md" radius="md" onClick={() => handlePostRemove(post.id)}>
+            Remove Post
           </Button>
         </Card>
       );
