@@ -1,13 +1,43 @@
-"use client";
-
 import { useSession } from "next-auth/react";
 import { Title, Text, Alert, Flex, Image } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
 import GoogleSignInOutButton from "components/GoogleSignInOutButton";
+import { PrismaClient, Post as PostType } from '@prisma/client';
+import { getServerSession } from 'next-auth';
+import { authOptions } from 'lib/authOptions';
+import Post from 'components/Post';
 
-export default function AccountPage() {
 
-    const { data: session } = useSession();
+const prisma = new PrismaClient();
+let posts: PostType[];
+
+export default async function AccountPage() {
+
+    const session = await getServerSession(authOptions);
+    let loggedInUserId;
+
+    if (session && prisma) {
+
+        if (session.user && session.user.email) {
+            loggedInUserId = await prisma.user.findUnique({
+                where: {
+                    email: session.user.email
+                }
+            })
+        }
+
+        if (loggedInUserId) {
+            posts = await prisma.post.findMany({
+                where: {
+                    user: loggedInUserId
+                }
+            })
+
+            if (posts.length > 0) {
+
+            }
+        }
+    }
 
     return (
         <>
@@ -36,6 +66,15 @@ export default function AccountPage() {
                             <GoogleSignInOutButton />
                         </Flex>
                     </>
+            }
+            {
+                posts ? <>
+                    <Flex direction={"row"} wrap={"wrap"} justify={"start"} gap="md" p="lg" >
+                        {posts.map(post => (
+                            <Post key={post.id} post={post} />
+                        ))}
+                    </Flex>
+                </> : null
             }
         </>
     );
