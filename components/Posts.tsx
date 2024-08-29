@@ -2,8 +2,6 @@ import { PrismaClient, Post as PostType } from '@prisma/client';
 import { Flex } from '@mantine/core';
 import Post from 'components/Post';
 
-export const revalidate = 1;
-
 const prisma = new PrismaClient()
 
 export default async function Posts() {
